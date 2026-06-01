@@ -1,56 +1,28 @@
-const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
-const multer = require("multer");
-const path = require("path");
-
+const express = require('express');
 const app = express();
-const PORT = 3000;
+const path = require('path');
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname)));
 
-const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  }
+app.get('/api/status', (req, res) => {
+  res.json({ status: 'ok', time: new Date() });
 });
 
-const upload = multer({ storage });
-
-const db = new sqlite3.Database("database.db");
-
-db.run(`
-CREATE TABLE IF NOT EXISTS cars (
-id INTEGER PRIMARY KEY AUTOINCREMENT,
-plate TEXT,
-brand TEXT,
-model TEXT,
-year TEXT,
-owner TEXT,
-ownerInfo TEXT,
-image TEXT
-)`);
-
-app.post("/add-car", upload.single("image"), (req, res) => {
-  const { plate, brand, model, year, owner, ownerInfo } = req.body;
-  const image = req.file ? req.file.filename : "";
-
-  db.run(
-    "INSERT INTO cars (plate, brand, model, year, owner, ownerInfo, image) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [plate, brand, model, year, owner, ownerInfo, image]
-  );
-
-  res.sendStatus(200);
+// Пример ендпойнт за търсене
+app.get('/api/vehicles/:reg', (req, res) => {
+  const reg = req.params.reg.toUpperCase();
+  const dummy = {
+    reg, marca: "BMW", model: "530d", year: "2018",
+    owner: "Иван Петров Иванов", phone: "0888 123 456",
+    email: "ivan.petrov@example.com", added: "24.05.2024 14:35"
+  };
+  if (reg === "CB1234AB") return res.json(dummy);
+  res.status(404).json({ error: "Not found" });
 });
 
-app.get("/search", (req, res) => {
-  db.all(
-    "SELECT * FROM cars WHERE plate = ?",
-    [req.query.plate],
-    (err, rows) => res.json(rows)
-  );
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
-
-app.listen(PORT, () => console.log("http://localhost:" + PORT));
