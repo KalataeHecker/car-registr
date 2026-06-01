@@ -1,87 +1,22 @@
-body{
-margin:0;
-font-family:Arial;
-background:#eef2f7;
-display:flex;
+:root{
+  --bg: #0b2a47;
+  --sidebar: #0e2a4b;
+  --panel: #f5f7fb;
+  --text: #1b2b45;
+  --accent: #2a6bd6;
 }
-
-/* SIDEBAR */
-.sidebar{
-width:220px;
-background:#0b1f3a;
-color:white;
-height:100vh;
-padding:20px;
-}
-
-.sidebar h2{
-text-align:center;
-}
-
-.sidebar button{
-width:100%;
-margin:10px 0;
-padding:10px;
-background:#132c52;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-/* MAIN */
-.main{
-flex:1;
-padding:20px;
-}
-
-/* TOPBAR */
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#0b3d91;
-color:white;
-padding:15px;
-border-radius:8px;
-}
-
-.admin{
-cursor:pointer;
-font-size:22px;
-}
-
-/* SEARCH */
-.search-box{
-margin-top:20px;
-display:flex;
-gap:10px;
-}
-
-.search-box input{
-flex:1;
-padding:10px;
-}
-
-.search-box button{
-padding:10px 20px;
-background:#0b3d91;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-/* PANEL */
-.panel{
-margin-top:20px;
-background:white;
-padding:20px;
-border-radius:10px;
-}
-
-.hidden{display:none;}
-
-input,textarea{
-width:100%;
-margin:8px 0;
-padding:10px;
-}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Arial, Helvetica, sans-serif;background:#e9eef6}
+.topbar{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(#0b2a47,#0d3b72);color:#fff;padding:14px 24px;position:fixed;top:0;left:0;right:0;z-index:10}
+.brand{display:flex;gap:12px;align-items:center;font-weight:700}
+.brand img{width:48px;height:48px;object-fit:contain}
+.sidebar{position:fixed;top:72px;left:0;bottom:0;width:240px;background:linear-gradient(#123a6b,#0b2a47);color:#fff;padding:20px 14px}
+.sidebar ul{list-style:none;margin:0;padding:0}
+.sidebar li{padding:12px 10px;border-radius:6px;margin:6px 0;cursor:default;background:transparent}
+.sidebar li.active{background:rgba(255,255,255,0.15)}
+.content{margin-left:260px;margin-top:100px;padding:20px;display:flex;gap:20px;flex-wrap:wrap}
+.content > section{flex:1 1 60%;min-width:540px;background:#fff;border:1px solid #dde6f0;border-radius:8px;padding:16px}
+.admin-panel{width:320px;background:#fff;border:1px solid #dde6f0;border-radius:8px;padding:16px;position:fixed;right:20px;top:100px;max-width:360px}
+.search-panel h2{margin:0 0 12px;font-size:22px}
+.search-row{display:flex;gap:10px}
+#regInput{flex:1;padding:12px;border:1
