@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ панел</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 👤 ICON -->
+<div class="top-right">
+    <span class="user-icon" onclick="openLogin()">👤</span>
+</div>
+
+<!-- LOGIN -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="error"></p>
+    </div>
+</div>
+
+<h1>⚙️ Админ панел</h1>
+
+<div class="form admin-only">
+    <input id="plate" placeholder="Номер">
+    <input id="brand" placeholder="Марка">
+    <input id="model" placeholder="Модел">
+    <button onclick="addCar()">Добави</button>
+</div>
+
+<div id="list"></div>
+
+<button class="admin-only" onclick="logout()">Logout</button>
+
+<script src="script.js"></script>
+</body>
+</html>
