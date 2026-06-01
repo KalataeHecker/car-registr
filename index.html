@@ -1,0 +1,34 @@
+ <div class="search-box">
+    <input id="searchInput" placeholder="Регистрационен номер">
+    <button onclick="searchCar()">ТЪРСИ</button>
+  </div>
+
+  <div id="result"></div>
+
+  <div id="adminPanel" class="panel hidden">
+
+    <h3>АДМИН ПАНЕЛ</h3>
+
+    <button onclick="toggleForm()">Добави автомобил</button>
+
+    <form id="form" class="hidden">
+
+      <input type="file" id="image">
+
+      <input id="plate" placeholder="Рег. номер">
+      <input id="brand" placeholder="Марка">
+      <input id="model" placeholder="Модел">
+      <input id="year" placeholder="Година">
+      <input id="owner" placeholder="Собственик">
+      <textarea id="ownerInfo" placeholder="Информация"></textarea>
+
+      <button type="submit">ЗАПАЗИ</button>
+    </form>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
